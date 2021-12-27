@@ -1,4 +1,7 @@
 import telebot
+import pandas as pd
+
+movimientos = pd.read_csv('movimientos.csv', encoding='utf-8')
 
 # 1678222267:AAFWYbb5BmVO0HRwlc6XeX5YsxvrhMesqbs
 
@@ -20,6 +23,6 @@ def send_welcome(message):
 def echo_all(message):
 	bot.reply_to(message, 'Probando')
 
-bot.infinity_polling()
+# bot.infinity_polling()
 
 print('Listo')
