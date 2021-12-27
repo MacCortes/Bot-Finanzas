@@ -3,3 +3,6 @@ auxiliar.py
 
 # cache donde se almacena la variable
 __pycache__/*.pyc
+
+# ignorar csv
+bases
