@@ -5,8 +5,6 @@ from auxiliar import bot_token
 movimientos = pd.read_csv('movimientos.csv', encoding='utf-8')
 cuentas = pd.read_csv('cuentas.csv', encoding='utf-8')
 
-# 1678222267:AAFWYbb5BmVO0HRwlc6XeX5YsxvrhMesqbs
-
 print(bot_token)
 
 bot = telebot.TeleBot(bot_token)
