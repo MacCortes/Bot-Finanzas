@@ -1,0 +1,5 @@
+# script donde está el token del bot
+auxiliar.py
+
+# cache donde se almacena la variable
+__pycache__/*.pyc
