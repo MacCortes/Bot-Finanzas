@@ -1,13 +1,13 @@
-import telebot
+import telebot as tb
 import pandas as pd
 from auxiliar import bot_token
 
-movimientos = pd.read_csv('movimientos.csv', encoding='utf-8')
-cuentas = pd.read_csv('cuentas.csv', encoding='utf-8')
+movimientos = pd.read_csv('bases/movimientos.csv', encoding='utf-8')
+cuentas = pd.read_csv('bases/cuentas.csv', encoding='utf-8')
 
 print(bot_token)
 
-bot = telebot.TeleBot(bot_token)
+bot = tb.TeleBot(bot_token)
 
 print('Iniciado')
 
@@ -19,10 +19,15 @@ def send_welcome(message):
 def send_welcome(message):
 	bot.reply_to(message, "Comandos disponibles")
 
+@bot.message_handler(commands=["movimiento"])
+def add_trans(message):
+	pass
+
+
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-	bot.reply_to(message, 'Probando')
+	bot.send_message(message.chat.id, 'Probando')
 
-# bot.infinity_polling()
+bot.infinity_polling()
 
 print('Listo')
