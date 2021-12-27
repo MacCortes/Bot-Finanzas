@@ -28,6 +28,6 @@ def add_trans(message):
 def echo_all(message):
 	bot.send_message(message.chat.id, 'Probando')
 
-bot.infinity_polling()
+#bot.infinity_polling()
 
 print('Listo')
