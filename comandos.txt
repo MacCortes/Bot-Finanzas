@@ -1,0 +1,5 @@
+Comandos disponibles
+
+/start: Saludo de bienvenida
+/help: Comandos disponibles
+/last: Últimos N movimientos
