@@ -2,4 +2,6 @@ Comandos disponibles
 
 /start: Saludo de bienvenida
 /help: Comandos disponibles
-/last: Últimos N movimientos
+
+last _n_: Últimos N movimientos
+
