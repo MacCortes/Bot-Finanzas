@@ -1,7 +1,7 @@
 Comandos disponibles
 
-/start: Saludo de bienvenida
-/help: Comandos disponibles
+/start: Welcome message
+/help: Avalaibles commands and tools
 
-last _n_: Últimos N movimientos
+last _n_: Last transactions made
 
