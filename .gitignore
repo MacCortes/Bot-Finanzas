@@ -1,8 +1,11 @@
-# script donde está el token del bot
+# script where it's saved the bot's token
 auxiliar.py
 
-# cache donde se almacena la variable
+# cache where the variable it's stored
 __pycache__/*.pyc
 
-# ignorar csv
-bases
+# igonre csv
+db
+
+# ignore images generated
+images
