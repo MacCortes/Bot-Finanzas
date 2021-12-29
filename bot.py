@@ -1,6 +1,6 @@
 import telebot as tb
 import pandas as pd
-import dataframe_image as dfi
+# import dataframe_image as dfi
 from auxiliar import bot_token
 
 # read csv
