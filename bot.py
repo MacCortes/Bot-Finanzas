@@ -8,7 +8,7 @@ transactions = pd.read_csv('~/Documents/Bot-Finanzas/db/movimientos.csv', encodi
 accounts = pd.read_csv('~/Documents/Bot-Finanzas/db/cuentas.csv', encoding='utf-8')
 
 # read availables commands from the txt file
-with open('~/Documents/Bot-Finanzas/commands.txt', encoding='utf8') as f:
+with open('/home/pi/Documents/Bot-Finanzas/commands.txt', encoding='utf-8') as f:
     lines = f.read()
 
 # auxiliar variables
@@ -20,7 +20,7 @@ def lastn_request(message):
 	if len(line) >= 2 and line[0] == 'last':
 		return True
 	else:
-		return False		 
+		return False
 
 # Bot
 bot = tb.TeleBot(bot_token)
