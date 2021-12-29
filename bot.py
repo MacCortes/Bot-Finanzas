@@ -8,7 +8,7 @@ transactions = pd.read_csv('~/Documents/Bot-Finanzas/db/movimientos.csv', encodi
 accounts = pd.read_csv('~/Documents/Bot-Finanzas/db/cuentas.csv', encoding='utf-8')
 
 # read availables commands from the txt file
-with open('~/Documents/Bot-Finanzas/db/commands.txt', encoding='utf8') as f:
+with open('~/Documents/Bot-Finanzas/commands.txt', encoding='utf8') as f:
     lines = f.read()
 
 # auxiliar variables
