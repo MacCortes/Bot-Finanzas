@@ -44,6 +44,7 @@ def lastn_trans(message):
 	
 	except ValueError:
 		bot.send_message(message.chat.id, 'Please especify the number of rows')
+		return
 
 	dfi.export(transactions[cols_trans].tail(n_rows), '~/Documents/Bot-Finanzas/images/lastn.png')
 
