@@ -1,6 +1,9 @@
 # script where it's saved the bot's token
 auxiliar.py
 
+# script to test on my local machine
+test.py
+
 # cache where the variable it's stored
 __pycache__/*.pyc
 
