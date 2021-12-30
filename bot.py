@@ -49,6 +49,10 @@ def send_welcome(message):
 def send_welcome(message):
 	bot.send_message(message.chat.id, lines, parse_mode="markdown")
 
+@bot.message_handler(commands=['stop'])
+def stop_bot(message):
+	bot.stop_polling()
+
 @bot.message_handler(func=lastn_request)
 def lastn_trans(message):
 	line = message.text.lower().split()
