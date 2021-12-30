@@ -34,7 +34,7 @@ def saves_png(df, img_name):
 
 	pd.plotting.table(ax, df)  # where df is your data frame
 
-	plt.savefig('/home/pi/Documents/Bot-Finanzas/images/{img_name}.png')
+	plt.savefig(f'/home/pi/Documents/Bot-Finanzas/images/{img_name}.png')
 
 #### Bot
 bot = tb.TeleBot(bot_token)
@@ -62,7 +62,7 @@ def lastn_trans(message):
 
 	# dfi.export(transactions[cols_trans].tail(n_rows), '~/Documents/Bot-Finanzas/images/lastn.png')
 	saves_png(transactions[cols_trans].tail(n_rows), 'lastn')
-	
+
 	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
 	
 
