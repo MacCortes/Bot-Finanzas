@@ -68,7 +68,7 @@ def lastn_trans(message):
 		bot.send_message(message.chat.id, 'Please especify the number of rows')
 		return
 
-	dfi.export(transactions[cols_trans].tail(n_rows), '~/Documents/Bot-Finanzas/images/lastn.png')
+	dfi.export(transactions[cols_trans].tail(n_rows), '~/Documents/Bot-Finanzas/images/lastn.png', table_conversion='matplotlib')
 	# saves_png(transactions[cols_trans].tail(n_rows), 'lastn')
 
 	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
