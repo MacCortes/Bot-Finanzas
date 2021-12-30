@@ -3,18 +3,18 @@ import pandas as pd
 # import dataframe_image as dfi
 from auxiliar import bot_token
 
-# read csv
+#### read csv
 transactions = pd.read_csv('~/Documents/Bot-Finanzas/db/movimientos.csv', encoding='utf-8')
 accounts = pd.read_csv('~/Documents/Bot-Finanzas/db/cuentas.csv', encoding='utf-8')
 
-# read availables commands from the txt file
+#### read availables commands from the txt file
 with open('/home/pi/Documents/Bot-Finanzas/commands.txt', encoding='utf-8') as f:
     lines = f.read()
 
-# auxiliar variables
+#### auxiliar variables
 cols_trans = ['Tipo', 'Cuenta', 'Cantidad', 'Fecha', 'Descripción']
 
-# auxiliar functions
+#### auxiliar functions
 def lastn_request(message):
 	line = message.text.lower().split()
 	if len(line) >= 2 and line[0] == 'last':
@@ -22,7 +22,7 @@ def lastn_request(message):
 	else:
 		return False
 
-# Bot
+#### Bot
 bot = tb.TeleBot(bot_token)
 
 print('Iniciado')
