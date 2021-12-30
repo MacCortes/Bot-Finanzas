@@ -4,6 +4,9 @@ import pandas as pd
 import dataframe_image as dfi
 from auxiliar import bot_token
 
+#### configuration
+# dfi.convert(table_conversion='matplotlib')
+
 #### read csv
 transactions = pd.read_csv('~/Documents/Bot-Finanzas/db/movimientos.csv', encoding='utf-8')
 accounts = pd.read_csv('~/Documents/Bot-Finanzas/db/cuentas.csv', encoding='utf-8')
