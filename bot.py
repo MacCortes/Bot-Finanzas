@@ -75,6 +75,10 @@ def lastn_trans(message):
 def echo_all(message):
 	bot.send_message(message.chat.id, 'How can I help you?')
 
+print('Before infinity polling')
+
 bot.infinity_polling()
+
+print('After infinity polling')
 
 print('Listo')
