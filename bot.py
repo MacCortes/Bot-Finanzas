@@ -1,5 +1,7 @@
 import telebot as tb
 import pandas as pd
+import matplotlib.pyplot as plt
+# from pandas.plotting import table # EDIT: see deprecation warnings below
 # import dataframe_image as dfi
 from auxiliar import bot_token
 
@@ -15,12 +17,24 @@ with open('/home/pi/Documents/Bot-Finanzas/commands.txt', encoding='utf-8') as f
 cols_trans = ['Tipo', 'Cuenta', 'Cantidad', 'Fecha', 'Descripción']
 
 #### auxiliar functions
+
+## functions for the handlers
 def lastn_request(message):
 	line = message.text.lower().split()
 	if len(line) >= 2 and line[0] == 'last':
 		return True
 	else:
 		return False
+
+## other functions
+def saves_png(df, img_name):
+	ax = plt.subplot(111, frame_on=False) # no visible frame
+	ax.xaxis.set_visible(False)  # hide the x axis
+	ax.yaxis.set_visible(False)  # hide the y axis
+
+	pd.plotting.table(ax, df)  # where df is your data frame
+
+	plt.savefig('/home/pi/Documents/Bot-Finanzas/images/{img_name}.png')
 
 #### Bot
 bot = tb.TeleBot(bot_token)
@@ -46,9 +60,10 @@ def lastn_trans(message):
 		bot.send_message(message.chat.id, 'Please especify the number of rows')
 		return
 
-	dfi.export(transactions[cols_trans].tail(n_rows), '~/Documents/Bot-Finanzas/images/lastn.png')
-
-	bot.send_photo(message.chat.id, open('~/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
+	# dfi.export(transactions[cols_trans].tail(n_rows), '~/Documents/Bot-Finanzas/images/lastn.png')
+	saves_png(transactions[cols_trans].tail(n_rows), 'lastn')
+	
+	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
 	
 
 @bot.message_handler(func=lambda message: True)
