@@ -4,9 +4,6 @@ import pandas as pd
 import dataframe_image as dfi
 from auxiliar import bot_token
 
-#### configuration
-# dfi.convert(table_conversion='matplotlib')
-
 #### read csv
 transactions = pd.read_csv('~/Documents/Bot-Finanzas/db/movimientos.csv', encoding='utf-8')
 accounts = pd.read_csv('~/Documents/Bot-Finanzas/db/cuentas.csv', encoding='utf-8')
@@ -30,14 +27,6 @@ def lastn_request(message):
 
 ## other functions
 def saves_png(df, img_name):
-	#ax = plt.subplot(111, frame_on=False) # no visible frame
-	#ax.xaxis.set_visible(False)  # hide the x axis
-	#ax.yaxis.set_visible(False)  # hide the y axis
-
-	#pd.plotting.table(ax, df)  # where df is your data frame
-
-	#plt.savefig(f'/home/pi/Documents/Bot-Finanzas/images/{img_name}.png')
-	# dfi.export(transactions[cols_trans].tail(n_rows), '~/Documents/Bot-Finanzas/images/lastn.png')
 	pass
 
 #### Bot
@@ -69,7 +58,6 @@ def lastn_trans(message):
 		return
 
 	dfi.export(transactions[cols_trans].tail(n_rows), '/home/pi/Documents/Bot-Finanzas/images/lastn.png', table_conversion='matplotlib')
-	# saves_png(transactions[cols_trans].tail(n_rows), 'lastn')
 
 	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
 	
