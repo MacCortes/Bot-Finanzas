@@ -26,8 +26,9 @@ def lastn_request(message):
 		return False
 
 ## other functions
-def saves_png(df, img_name):
-	pass
+def saves_png(df, img_name, path):
+	dfi.export(df, f'{path}{img_name}.png', table_conversion='matplotlib')
+	# dfi.export(transactions[cols_trans].tail(n_rows), '/home/pi/Documents/Bot-Finanzas/images/lastn.png', table_conversion='matplotlib')
 
 #### Bot
 bot = tb.TeleBot(bot_token)
@@ -57,7 +58,7 @@ def lastn_trans(message):
 		bot.send_message(message.chat.id, 'Please especify the number of rows')
 		return
 
-	dfi.export(transactions[cols_trans].tail(n_rows), '/home/pi/Documents/Bot-Finanzas/images/lastn.png', table_conversion='matplotlib')
+	saves_png(transactions[cols_trans].tail(n_rows), 'lastn', '/home/pi/Documents/Bot-Finanzas/images/')
 
 	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
 	
