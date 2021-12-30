@@ -1,6 +1,6 @@
 import telebot as tb
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import dataframe_image as dfi
 from auxiliar import bot_token
 
