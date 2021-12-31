@@ -64,6 +64,29 @@ def lastn_trans(message):
 
 	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
 
+@bot.message_handler(regexp='^[Ss]umm .')
+def summary(message):
+	line = message.text.lower().split()
+
+	if len(line) == 1:
+		# summary with all the accounts
+		df = transactions.groupby(['Cuenta'], as_index=False)[['Cantidad']].sum()
+
+	elif line[1] == 'debit':
+		# summary filtering out credit
+		df = transactions[transactions['Tipo'] != 'Crédito'].groupby(['Cuenta'], as_index=False)[['Cantidad']].sum()
+	
+	elif line[1] == 'credit':
+		# summary filtering out debit
+		df = transactions[transactions['Tipo'] == 'Crédito'].groupby(['Cuenta'], as_index=False)[['Cantidad']].sum() 
+	
+	try:
+		saves_png(df, 'summary', '/home/pi/Documents/Bot-Finanzas/images/')
+		bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/summary.png', 'rb'))
+	
+	except:
+		bot.reply_to(message, 'Please send the correct filter for the instruction')
+
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
