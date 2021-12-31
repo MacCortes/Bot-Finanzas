@@ -8,6 +8,9 @@ from auxiliar import bot_token
 transactions = pd.read_csv('~/Documents/Bot-Finanzas/db/movimientos.csv', encoding='utf-8')
 accounts = pd.read_csv('~/Documents/Bot-Finanzas/db/cuentas.csv', encoding='utf-8')
 
+#### column formating
+transactions['Cantidad'] = transactions['Cantidad'].replace('[^-.0-9]', '', regex=True).astype(float)
+
 #### read availables commands from the txt file
 with open('/home/pi/Documents/Bot-Finanzas/commands.txt', encoding='utf-8') as f:
     lines = f.read()
@@ -25,10 +28,9 @@ def lastn_request(message):
 	else:
 		return False
 
-## other functions
+## others functions
 def saves_png(df, img_name, path):
 	dfi.export(df, f'{path}{img_name}.png', table_conversion='matplotlib')
-	# dfi.export(transactions[cols_trans].tail(n_rows), '/home/pi/Documents/Bot-Finanzas/images/lastn.png', table_conversion='matplotlib')
 
 #### Bot
 bot = tb.TeleBot(bot_token)
@@ -53,7 +55,7 @@ def lastn_trans(message):
 
 	try:
 		n_rows = min(int(line[1]), len(transactions))
-	
+
 	except ValueError:
 		bot.send_message(message.chat.id, 'Please especify the number of rows')
 		return
@@ -61,7 +63,7 @@ def lastn_trans(message):
 	saves_png(transactions[cols_trans].tail(n_rows), 'lastn', '/home/pi/Documents/Bot-Finanzas/images/')
 
 	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
-	
+
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
