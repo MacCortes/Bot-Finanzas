@@ -3,5 +3,5 @@ Comandos disponibles
 /start: Welcome message
 /help: Avalaibles commands and tools
 
-last _n_: Last transactions made
-
+last _n_: Last transactions made. If _n_ not provided, default is 10
+summ [account type]: sends back a summary of the accounts requested. If optional parameter empty, returns all the accounts. Available options right now: debit, credit

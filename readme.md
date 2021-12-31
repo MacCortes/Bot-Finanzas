@@ -21,4 +21,7 @@ The bot has defined commands (/command) and instructions to interact with it.
 
 ### Instructions
 
-- **last n:** sends the last *n* transactions registered in the database
+- **last n:** sends the last *n* transactions registered in the database. If number of rows (n) not provided, default is 10
+- **summ [account type]:** sends back a summary of the accounts requested. If optional parameter empty, returns all the accounts. Available options right now:
+    - debit 
+    - credit
