@@ -67,7 +67,7 @@ def lastn_trans(message):
 
 	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
 
-@bot.message_handler(regexp='^[Ss]umm.')
+@bot.message_handler(regexp='^([Ss]umm.|[Ss]umm)')
 def summary(message):
 	line = message.text.lower().split()
 
