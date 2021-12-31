@@ -16,3 +16,4 @@ images
 ## ignore pscp exe and bat file to transfer csv to the raspberry
 pscp.exe
 transfer_files.bat
+transfer_trans.bat
