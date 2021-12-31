@@ -32,6 +32,9 @@ def lastn_request(message):
 def saves_png(df, img_name, path):
 	dfi.export(df, f'{path}{img_name}.png', table_conversion='matplotlib')
 
+def groupby_sum(df, cols_names, cols_sum):
+	df.groupby(cols_names, as_index=False)[[cols_sum]].sum()
+
 #### Bot
 bot = tb.TeleBot(bot_token)
 
@@ -70,16 +73,21 @@ def summary(message):
 
 	if len(line) == 1:
 		# summary with all the accounts
-		df = transactions.groupby(['Cuenta'], as_index=False)[['Cantidad']].sum()
+		# df = transactions.groupby(['Cuenta'], as_index=False)[['Cantidad']].sum()
+		df = groupby_sum(transactions, ['Cuenta'], 'Cantidad')
 
 	elif line[1] == 'debit':
 		# summary filtering out credit
-		df = transactions[transactions['Tipo'] != 'Crédito'].groupby(['Cuenta'], as_index=False)[['Cantidad']].sum()
+		# df = transactions[transactions['Tipo'] != 'Crédito'].groupby(['Cuenta'], as_index=False)[['Cantidad']].sum()
+		df = transactions[transactions['Tipo'] != 'Crédito']
+		df = groupby_sum(transactions, ['Cuenta'], 'Cantidad')
 	
 	elif line[1] == 'credit':
 		# summary filtering out debit
-		df = transactions[transactions['Tipo'] == 'Crédito'].groupby(['Cuenta'], as_index=False)[['Cantidad']].sum() 
-	
+		# df = transactions[transactions['Tipo'] == 'Crédito'].groupby(['Cuenta'], as_index=False)[['Cantidad']].sum() 
+		df = transactions[transactions['Tipo'] == 'Crédito']
+		df = groupby_sum(transactions, ['Cuenta'], 'Cantidad')
+
 	try:
 		saves_png(df, 'summary', '/home/pi/Documents/Bot-Finanzas/images/')
 		bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/summary.png', 'rb'))
