@@ -56,16 +56,20 @@ def send_welcome(message):
 #def stop_bot(message):
 #	bot.stop_polling()
 
-@bot.message_handler(func=lastn_request)
+@bot.message_handler(regexp='^[Ll]ast *.*')
 def lastn_trans(message):
 	line = message.text.lower().split()
 
-	try:
-		n_rows = min(int(line[1]), len(transactions))
+	if len(line) == 1:
+		n_rows = 10
+	
+	else:
+		try:
+			n_rows = min(int(line[1]), len(transactions))
 
-	except ValueError:
-		bot.send_message(message.chat.id, 'Please especify the number of rows')
-		return
+		except ValueError:
+			bot.send_message(message.chat.id, 'Please especify the number of rows')
+			return
 
 	saves_png(transactions[cols_trans].tail(n_rows), 'lastn', '/home/pi/Documents/Bot-Finanzas/images/')
 
@@ -95,8 +99,6 @@ def summary(message):
 	
 	except:
 		bot.reply_to(message, 'Please send the correct filter for the instruction')
-	
-	bot.send_message(message.chat.id, str(len(line)))
 
 
 @bot.message_handler(func=lambda message: True)
