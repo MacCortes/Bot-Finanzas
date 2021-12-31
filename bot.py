@@ -94,6 +94,8 @@ def summary(message):
 	
 	except:
 		bot.reply_to(message, 'Please send the correct filter for the instruction')
+	
+	bot.send_message(message.chat.id, str(len(line)))
 
 
 @bot.message_handler(func=lambda message: True)
