@@ -67,24 +67,21 @@ def lastn_trans(message):
 
 	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/lastn.png', 'rb'))
 
-@bot.message_handler(regexp='^([Ss]umm.|[Ss]umm)')
+@bot.message_handler(regexp='^[Ss]umm *.*')
 def summary(message):
 	line = message.text.lower().split()
 
 	if len(line) == 1:
 		# summary with all the accounts
-		# df = transactions.groupby(['Cuenta'], as_index=False)[['Cantidad']].sum()
 		df = groupby_sum(transactions, ['Cuenta'], 'Cantidad')
 
 	elif line[1] == 'debit':
 		# summary filtering out credit
-		# df = transactions[transactions['Tipo'] != 'Crédito'].groupby(['Cuenta'], as_index=False)[['Cantidad']].sum()
 		df = transactions[transactions['Tipo'] != 'Crédito']
 		df = groupby_sum(df, ['Cuenta'], 'Cantidad')
 	
 	elif line[1] == 'credit':
 		# summary filtering out debit
-		# df = transactions[transactions['Tipo'] == 'Crédito'].groupby(['Cuenta'], as_index=False)[['Cantidad']].sum() 
 		df = transactions[transactions['Tipo'] == 'Crédito']
 		df = groupby_sum(df, ['Cuenta'], 'Cantidad')
 
