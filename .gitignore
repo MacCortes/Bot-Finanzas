@@ -7,6 +7,9 @@ test.py
 # cache where the variable it's stored
 __pycache__/*.pyc
 
+# ignore excel file, personal finances
+FinanzasPersonales.xlsm
+
 # igonre csv
 db
 
