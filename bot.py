@@ -10,7 +10,7 @@ pd.options.display.float_format = '${:,.2f}'.format
 
 #### read csv
 transactions = pd.read_csv('~/Documents/Bot-Finanzas/db/movimientos.csv', encoding='utf-8')
-accounts = pd.read_csv('~/Documents/Bot-Finanzas/db/cuentas.csv', encoding='utf-8')
+accounts_db = pd.read_csv('~/Documents/Bot-Finanzas/db/cuentas.csv', encoding='utf-8')
 
 #### column formating
 transactions['Cantidad'] = transactions['Cantidad'].replace('[^-.0-9]', '', regex=True).astype(float)
@@ -59,7 +59,7 @@ def send_welcome(message):
 
 @bot.message_handler(regexp='^[Aa]cc *.*')
 def accounts(message):
-	df = accounts[accounts['Activa'] == 1][cols_acc]
+	df = accounts_db[accounts_db['Activa'] == 1][cols_acc]
 
 	saves_png(df, 'accounts', '/home/pi/Documents/Bot-Finanzas/images/')
 
