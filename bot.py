@@ -21,6 +21,7 @@ with open('/home/pi/Documents/Bot-Finanzas/commands.txt', encoding='utf-8') as f
 
 #### auxiliar variables
 cols_trans = ['Tipo', 'Cuenta', 'Cantidad', 'Fecha', 'Descripción']
+cols_acc = ['Id_cuenta', 'Nombre', 'Tipo']
 
 #### auxiliar functions
 
@@ -55,6 +56,15 @@ def send_welcome(message):
 #@bot.message_handler(commands=['stop'])
 #def stop_bot(message):
 #	bot.stop_polling()
+
+@bot.message_handler(regexp='^[Aa]cc *.*')
+def accounts(message):
+	df = accounts[accounts['Activa'] == 1][cols_acc]
+
+	saves_png(df, 'accounts', '/home/pi/Documents/Bot-Finanzas/images/')
+
+	bot.send_photo(message.chat.id, open('/home/pi/Documents/Bot-Finanzas/images/accounts.png', 'rb'))
+
 
 @bot.message_handler(regexp='^[Ll]ast *.*')
 def lastn_trans(message):
@@ -105,10 +115,7 @@ def summary(message):
 def echo_all(message):
 	bot.send_message(message.chat.id, 'How can I help you?')
 
-print('Before infinity polling')
 
 bot.infinity_polling()
-
-print('After infinity polling')
 
 print('Listo')
