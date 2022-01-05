@@ -110,6 +110,11 @@ def summary(message):
 	except:
 		bot.reply_to(message, 'Please send the correct filter for the instruction')
 
+@bot.message_handler(regexp='\d+ [Ff]rom \d+ to \d+')
+def save_trans(message):
+	line = message.text.lower().split()
+
+	bot.send_message(message.chat.id, message.text)
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
